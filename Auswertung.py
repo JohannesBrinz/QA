@@ -1,8 +1,7 @@
-''' Versuch MCC
+''' Versuch QA
  Johannes Brinz & Caterina Vanelli
- Betreuer: Laura Meißner
- Datum: 4.12.2020
- Ort: Online'''
+ Datum: 17.12.2020
+ Ort: Rec C301'''
 
 import numpy as np
 import matplotlib.pyplot as plt
