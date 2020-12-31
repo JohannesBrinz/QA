@@ -1,6 +1,7 @@
 ''' Versuch QA
  Johannes Brinz & Caterina Vanelli
  Datum: 17.12.2020
+ Betreuer: Max Mende
  Ort: Rec C301'''
 
 import numpy as np
@@ -102,45 +103,45 @@ f600_file["Wellenvektor"] = f600_file["Frequenz"] * 2*np.pi/343.421
 
 f600_mit_file["Wellenvektor"] = f600_mit_file["Frequenz"] * 2*np.pi/343.421
 
-'''
+
 #Reziproken Gittervektor abziehen
 for i in range(0, 25):
-    if f400_file["Wellenvektor"][i] > np.pi/0.05:            #pi/a = 8pi/L
-        f400_file["Wellenvektor"][i] -= np.pi/0.05
-    if f400_file["Wellenvektor"][i] > np.pi/0.05:
-        f400_file["Wellenvektor"][i] -= np.pi/0.05
-    if f400_file["Wellenvektor"][i] > np.pi/0.05:
-        f400_file["Wellenvektor"][i] -= np.pi/0.05
+    if f400_file["Wellenvektor"][i] > np.pi/0.053:            #pi/a = 8pi/L
+        f400_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f400_file["Wellenvektor"][i] > np.pi/0.053:
+        f400_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f400_file["Wellenvektor"][i] > np.pi/0.053:
+        f400_file["Wellenvektor"][i] -= 2*np.pi/0.053
 
 for i in range(0, 24):
-    if f400_mit_file["Wellenvektor"][i] > np.pi/0.05:            #pi/a = 8pi/L
-        f400_mit_file["Wellenvektor"][i] -= np.pi/0.05
-    if f400_mit_file["Wellenvektor"][i] > np.pi/0.05:
-        f400_mit_file["Wellenvektor"][i] -= np.pi/0.05
-    if f400_mit_file["Wellenvektor"][i] > np.pi/0.05:
-        f400_mit_file["Wellenvektor"][i] -= np.pi/0.05
+    if f400_mit_file["Wellenvektor"][i] > np.pi/0.053:            #pi/a = 8pi/L
+        f400_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f400_mit_file["Wellenvektor"][i] > np.pi/0.053:
+        f400_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f400_mit_file["Wellenvektor"][i] > np.pi/0.053:
+        f400_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
 
 for i in range(0, 34):
-    if f600_file["Wellenvektor"][i] > np.pi/0.05:            #pi/a = 8pi/L
-        f600_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_file["Wellenvektor"][i] -= np.pi/0.05
+    if f600_file["Wellenvektor"][i] > np.pi/0.053:            #pi/a = 8pi/L
+        f600_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_file["Wellenvektor"][i] -= 2*np.pi/0.053
 
 for i in range(0, 30):
-    if f600_mit_file["Wellenvektor"][i] > np.pi/0.05:            #pi/a = 8pi/L
-        f600_mit_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_mit_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_mit_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_mit_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_mit_file["Wellenvektor"][i] -= np.pi/0.05
-    if f600_mit_file["Wellenvektor"][i] > np.pi/0.05:
-        f600_mit_file["Wellenvektor"][i] -= np.pi/0.05
+    if f600_mit_file["Wellenvektor"][i] > np.pi/0.053:            #pi/a = 8pi/L
+        f600_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_mit_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_mit_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f600_mit_file["Wellenvektor"][i] > np.pi/0.053:
+        f600_mit_file["Wellenvektor"][i] -= 2*np.pi/0.053
 
-'''
+
 
 #4.6.1 Plot der Dispersion für L=400 und L=600 mit und ohne Irisblende
 #L=400 ohne
@@ -203,9 +204,9 @@ for i in range(0, 23):
 rho_file["Rho"] = 1/rho_file["Delta Frequenz"]
 
 
-plt.errorbar(f400_mit_file["Frequenz"][0:20], rho_file["Rho"][0:20], linewidth = 2, fmt='x')
-plt.title('Zusatndsdichte für L = 8x50mm mit Irisblende', fontsize = 15)
-plt.xlabel('Frequenz f [Hz]' , fontsize = 13)
+plt.errorbar(f400_mit_file["Frequenz"][0:23]*((2*np.pi)/343.421), rho_file["Rho"][0:23], linewidth = 2, fmt='x')
+plt.title('Zustandsdichte für L = 8x50mm mit Irisblende', fontsize = 15)
+plt.xlabel('Wellenvektor [Hz]' , fontsize = 13)
 plt.ylabel("Zustandsdichte [-]", fontsize = 13)
 plt.grid(True)
 #plt.legend(['gemessene Resonanzen', "erwartete Werte für k durch $k = n\pi/L$ "], fontsize = 13)
@@ -225,30 +226,29 @@ f4631_ohne["Wellenvektor"] = f4631_ohne["Frequenz"] * 2*np.pi/343.421
 f4631_stör["Wellenvektor"] = f4631_stör["Frequenz"] * 2*np.pi/343.421
 
 #Abzug Reziproker Wellenvektor
-'''
 for i in range(0, 23):
-    if f4631_ohne["Wellenvektor"][i] > np.pi/0.05:            #pi/a
-        f4631_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4631_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4631_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4631_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4631_ohne["Wellenvektor"][i] -= np.pi/0.05
+    if f4631_ohne["Wellenvektor"][i] > np.pi/0.053:            #pi/a
+        f4631_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4631_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4631_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4631_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4631_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
 
 
 for i in range(0, 29):
-    if f4631_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4631_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4631_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4631_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4631_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4631_stör["Wellenvektor"][i] -= np.pi/0.05
-'''
+    if f4631_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4631_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4631_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4631_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4631_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4631_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+
 
 #Plots Reudziertes Zonenschema
 #Ohne Störung
@@ -288,31 +288,30 @@ f4641_ohne["Wellenvektor"] = f4641_ohne["Frequenz"] * 2*np.pi/343.421
 f4641_stör["Wellenvektor"] = f4641_stör["Frequenz"] * 2*np.pi/343.421
 
 #Abzug Reziproker Wellenvektor
-'''
 for i in range(0, 38):
-    if f4641_ohne["Wellenvektor"][i] > np.pi/0.05:            #pi/a
-        f4641_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4641_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4641_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4641_ohne["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_ohne["Wellenvektor"][i] > np.pi/0.05:
-        f4641_ohne["Wellenvektor"][i] -= np.pi/0.05
+    if f4641_ohne["Wellenvektor"][i] > np.pi/0.053:            #pi/a
+        f4641_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4641_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4641_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4641_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_ohne["Wellenvektor"][i] > np.pi/0.053:
+        f4641_ohne["Wellenvektor"][i] -= 2*np.pi/0.053
 
 
 
 for i in range(0, 37):
-    if f4641_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4641_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4641_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4641_stör["Wellenvektor"][i] -= np.pi/0.05
-    if f4641_stör["Wellenvektor"][i] > np.pi/0.05:
-        f4641_stör["Wellenvektor"][i] -= np.pi/0.05
-'''
+    if f4641_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4641_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4641_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4641_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+    if f4641_stör["Wellenvektor"][i] > np.pi/0.053:
+        f4641_stör["Wellenvektor"][i] -= 2*np.pi/0.053
+
 
 #Plots Reudziertes Zonenschema
 #Ohne Störung
