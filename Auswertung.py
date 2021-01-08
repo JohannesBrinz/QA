@@ -21,6 +21,12 @@ D4611_600 = pd.read_csv("Daten Cate Jo/4611_600.dat", sep = " ", header = 0, \
     names = ["f[Hz]", "Sig[-]"])
 D4612 = pd.read_csv("Daten Cate Jo/4612.dat", sep = " ", header = 0, \
     names = ["f[Hz]", "Sig[-]"])
+D4613_10 = pd.read_csv("Daten Cate Jo/4613_10mm.dat", sep = " ", header = 0, \
+    names = ["f[Hz]", "Sig[-]"])
+D4613_13 = pd.read_csv("Daten Cate Jo/4613_13mm.dat", sep = " ", header = 0, \
+    names = ["f[Hz]", "Sig[-]"])
+D4614 = pd.read_csv("Daten Cate Jo/4614.dat", sep = " ", header = 0, \
+    names = ["f[Hz]", "Sig[-]"])
 
 #Definition von Funktionen
 L = 400e-3
@@ -28,12 +34,12 @@ def k(n):
     return n*np.pi/L
 
 def f(k):
-    return k * 343.421 /  (2*np.pi)
+    return k * 347.6 /  (2*np.pi)
 
 
 #4.6.1 Plot der Resonanzen für L=400 und L=600 mit und ohne Irisblende
 #L=400
-plt.plot(D4611_400["f[Hz]"]*2*np.pi/343.421, D4611_400["Sig[-]"], linewidth = 2)
+plt.plot(D4611_400["f[Hz]"]*2*np.pi/347.6, D4611_400["Sig[-]"], linewidth = 2)
 plt.errorbar(k(np.linspace(0, 28, 28)), np.linspace(5, 5, 28),  fmt='x', color = "green")
 plt.title('Resonanzfrequenzen für L = 400 mm', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
@@ -43,11 +49,24 @@ plt.legend(['gemessene Resonanzen', "erwartete Werte für k durch $k = n\pi/L$ "
 plt.savefig('Plots/P4611_400.png', dpi=300)
 plt.clf()
 
+#L=400 mit
+L = 421e-3
+plt.plot(D4614["f[Hz]"]*2*np.pi/347.6, D4614["Sig[-]"], linewidth = 2)
+#plt.errorbar(k(np.linspace(0, 10, 10)), np.linspace(5, 5, 10),  fmt='x', color = "green")
+plt.title('Resonanzfrequenzen für L = 421 mm mit Irisblende', fontsize = 15)
+plt.xlabel('Wellenzahl  [$m^{-1}$]', fontsize = 13)
+plt.ylabel('Signalhöhe [au]', fontsize = 13)
+plt.grid(True)
+plt.legend(['gemessene Resonanzen', "k durch $k = n\pi/L$ "], fontsize = 13)
+plt.savefig('Plots/P4614.png', dpi=300)
+plt.clf()
+
+
 #L=600 ohne
 L = 600e-3
-plt.plot(D4611_600["f[Hz]"]*2*np.pi/343.421, D4611_600["Sig[-]"], linewidth = 2)
+plt.plot(D4611_600["f[Hz]"]*2*np.pi/347.6, D4611_600["Sig[-]"], linewidth = 2)
 #plt.errorbar(k(np.linspace(0, 28, 28)), np.linspace(5, 5, 28),  fmt='x', color = "green")
-plt.title('Resonanzfrequenzen für L = 600 mm ohne Irisblende', fontsize = 15)
+plt.title('Resonanzfrequenzen für L = 633 mm ohne Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Signalhöhe [au]', fontsize = 13)
 plt.grid(True)
@@ -56,13 +75,27 @@ plt.savefig('Plots/P4611_600.png', dpi=300)
 plt.clf()
 
 #L=600 mit
-plt.plot(D4612["f[Hz]"]*2*np.pi/1000, D4612["Sig[-]"], linewidth = 2)
+L = 633e-3
+plt.plot(D4612["f[Hz]"]*2*np.pi/347.6, D4612["Sig[-]"], linewidth = 2)
 plt.title('Resonanzfrequenzen für L = 600 mm mit Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]', fontsize = 13)
 plt.ylabel('Signalhöhe [au]', fontsize = 13)
 plt.grid(True)
 plt.legend(['gemessene Resonanzen', "erwartete Werte für k durch $k = n\pi/L$ "], fontsize = 13)
 plt.savefig('Plots/P4612.png', dpi=300)
+plt.clf()
+
+#Vergleich der Dispersionen L=600
+L = 633e-3
+plt.plot(D4612["f[Hz]"]*2*np.pi/347.6, D4612["Sig[-]"], linewidth = 1, ls = "--")
+plt.plot(D4613_13["f[Hz]"]*2*np.pi/347.6, D4613_13["Sig[-]"], linewidth = 1, linestyle = "-")
+plt.plot(D4613_10["f[Hz]"]*2*np.pi/347.6, D4613_10["Sig[-]"], linewidth = 1, ls = "-")
+plt.title('Dispersion für verschiedene Irisblenden', fontsize = 15)
+plt.xlabel('Wellenzahl  [$m^{-1}$]', fontsize = 13)
+plt.ylabel('Signalhöhe [au]', fontsize = 13)
+plt.grid(True)
+plt.legend(['d = 16mm', "d = 13mm", "d = 10mm"], fontsize = 13)
+plt.savefig('Plots/P4613.png', dpi=300)
 plt.clf()
 
 #find peaks
@@ -97,11 +130,11 @@ f600_mit_file["Frequenz"] = [600, 850, 1150, 1450, 1700, 2000, 2250, 2400, 3350,
 f8x75_file["Frequenz"] = [150, 300, 550, 750, 1050, 1250, 1500, 1750, 2350, 2600, 2800, 3050, 3300, 3500, 3650, 4550, 4750, 4900, 5150, 5350, \
 5500, 6800, 6900, 7100, 7250, 7450, 7600, 9100, 9250, 9400, 9600, 9700, 11300, 11450, 11600, 11850, 11750]
 
-f8x75_file["Wellenvektor"] = f8x75_file["Frequenz"] * 2*np.pi/343.421
-f400_file["Wellenvektor"] = f400_file["Frequenz"] * 2*np.pi/343.421
-f400_mit_file["Wellenvektor"] = f400_mit_file["Frequenz"] * 2*np.pi/343.421
-f600_file["Wellenvektor"] = f600_file["Frequenz"] * 2*np.pi/343.421
-f600_mit_file["Wellenvektor"] = f600_mit_file["Frequenz"] * 2*np.pi/343.421
+f8x75_file["Wellenvektor"] = f8x75_file["Frequenz"] * 2*np.pi/347.6
+f400_file["Wellenvektor"] = f400_file["Frequenz"] * 2*np.pi/347.6
+f400_mit_file["Wellenvektor"] = f400_mit_file["Frequenz"] * 2*np.pi/347.6
+f600_file["Wellenvektor"] = f600_file["Frequenz"] * 2*np.pi/347.6
+f600_mit_file["Wellenvektor"] = f600_mit_file["Frequenz"] * 2*np.pi/347.6
 
 '''
 f8x75_file_minus["Wellenvektor"] = -f8x75_file["Wellenvektor"]
@@ -169,7 +202,7 @@ for i in range(0, 37):
 #L=400 ohne
 plt.errorbar(f400_file["Wellenvektor"][0:25], f400_file["Frequenz"][0:25], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f400_file["Wellenvektor"][0:25], f400_file["Frequenz"][0:25], linewidth = 2, fmt='x', color = "green")
-plt.title('Dispersion für L = 400 mm ohne Irisblende', fontsize = 15)
+plt.title('Dispersionsrelation für L = 421 mm ohne Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -181,7 +214,7 @@ plt.clf()
 #L=400 mit
 plt.errorbar(f400_mit_file["Wellenvektor"], f400_mit_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f400_mit_file["Wellenvektor"], f400_mit_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Dispersion für L = 400 mm mit Irisblende', fontsize = 15)
+plt.title('Dispersionsrelation  für L = 400 mm mit Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -193,7 +226,7 @@ plt.clf()
 #L=600 ohne
 plt.errorbar(f600_file["Wellenvektor"], f600_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f600_file["Wellenvektor"], f600_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Dispersion für L = 600 mm ohne Irisblende', fontsize = 15)
+plt.title('Dispersionsrelation  für L = 600 mm ohne Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -206,7 +239,7 @@ plt.clf()
 #L=600 mit
 plt.errorbar(f600_mit_file["Wellenvektor"], f600_mit_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f600_mit_file["Wellenvektor"], f600_mit_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Dispersion für L = 600 mm mit Irisblende', fontsize = 15)
+plt.title('Dispersionsrelation  für L = 600 mm mit Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -218,7 +251,7 @@ plt.clf()
 #L=8x75 mit
 plt.errorbar(f8x75_file["Wellenvektor"], f8x75_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f8x75_file["Wellenvektor"], f8x75_file["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Dispersion für L = 8x75 mm mit Irisblende', fontsize = 15)
+plt.title('Dispersionsrelation  für L = 8x75 mm mit Irisblende', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -286,7 +319,7 @@ for i in range(0, 37):
 #Ohne Störung
 plt.errorbar(f4631_ohne["Wellenvektor"], f4631_ohne["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f4631_ohne["Wellenvektor"], f4631_ohne["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Reduziertes Zonenschema ohne Störung', fontsize = 15)
+plt.title('Dispersionsrelation ohne Störung', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -298,7 +331,7 @@ plt.clf()
 #Mit Störung
 plt.errorbar(f4631_stör["Wellenvektor"], f4631_stör["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f4631_stör["Wellenvektor"], f4631_stör["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Reduziertes Zonenschema mit Störung', fontsize = 15)
+plt.title('Dispersionsrelation mit Störung', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -353,7 +386,7 @@ for i in range(0, 37):
 #Ohne Störung
 plt.errorbar(f4641_ohne["Wellenvektor"], f4641_ohne["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f4641_ohne["Wellenvektor"], f4641_ohne["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Reduziertes Zonenschema ohne Störung', fontsize = 15)
+plt.title('Dispersionsrelation ohne Störung', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
@@ -365,7 +398,7 @@ plt.clf()
 #Mit Störung
 plt.errorbar(f4641_stör["Wellenvektor"], f4641_stör["Frequenz"], linewidth = 2, fmt='x', color = "green")
 plt.errorbar(-f4641_stör["Wellenvektor"], f4641_stör["Frequenz"], linewidth = 2, fmt='x', color = "green")
-plt.title('Reduziertes Zonenschema mit Störung', fontsize = 15)
+plt.title('Dispersionsrelation mit Störung', fontsize = 15)
 plt.xlabel('Wellenzahl  [$m^{-1}$]' , fontsize = 13)
 plt.ylabel('Frequenz [Hz]', fontsize = 13)
 plt.grid(True)
